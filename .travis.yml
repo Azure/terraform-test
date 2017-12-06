@@ -15,7 +15,7 @@ jobs:
       script:
       - docker build -t microsoft/terraform-test:$TERRAFORM_VERSION . --build-arg tfver=$TERRAFORM_VERSION
     - stage: push docker image
-      if: (branch = master) AND (type IN (push))
+      if: (branch = master) AND (type IN (push, api, cron))
       install: true
       script:
       - docker build -t microsoft/terraform-test:$TERRAFORM_VERSION -t microsoft/terraform-test:latest . --build-arg tfver=$TERRAFORM_VERSION
