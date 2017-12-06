@@ -1,8 +1,8 @@
 # Overview
 
-This Docker image (see [Dockerfile](https://github.com/Azure/terraform/blob/master/Dockerfile)) is for testing [Azure Terraform modules](https://registry.terraform.io/browse?provider=azurerm).
+This Docker image (see [Dockerfile](https://github.com/Azure/terraform-test/blob/master/Dockerfile)) is for testing [Azure Terraform modules](https://registry.terraform.io/browse?provider=azurerm).
 
-[![Build Status](https://travis-ci.org/Azure/terraform.svg?branch=master)](https://travis-ci.org/Azure/terraform)
+[![Build Status](https://travis-ci.org/Azure/terraform-test.svg?branch=master)](https://travis-ci.org/Azure/terraform-test)
 
 # Usage 
 
@@ -21,7 +21,7 @@ export MODULE_PATH=/user/me/source/Azure/terraform-azurerm-modulename
 Now run the lint tests:
 
 ```shell
-docker run -v /$MODULE_PATH:/tf-test/module --rm microsoft/terraform rake build
+docker run -v /$MODULE_PATH:/tf-test/module --rm microsoft/terraform-test rake build
 ```
 
 ## End to End Tests
@@ -58,7 +58,7 @@ export MODULE_PATH=/user/me/source/Azure/terraform-azurerm-modulename
 
 Now run the tests.
 ```shell
-docker run -v ~/.ssh:/root/.ssh/ -v $PWD/logs:/tf-test/module/.kitchen -v /$MODULE_PATH:/tf-test/module -e ARM_CLIENT_ID -e ARM_TENANT_ID -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_SECRET -e ARM_TEST_LOCATION -e ARM_TEST_LOCATION_ALT --rm microsoft/terraform rake e2e
+docker run -v ~/.ssh:/root/.ssh/ -v $PWD/logs:/tf-test/module/.kitchen -v /$MODULE_PATH:/tf-test/module -e ARM_CLIENT_ID -e ARM_TENANT_ID -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_SECRET -e ARM_TEST_LOCATION -e ARM_TEST_LOCATION_ALT --rm microsoft/terraform-test rake e2e
 ```
 
 # Contributing
