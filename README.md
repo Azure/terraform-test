@@ -2,7 +2,7 @@
 
 This Docker image (see [Dockerfile](https://github.com/Azure/terraform/blob/master/Dockerfile)) is for testing [Azure Terraform modules](https://registry.terraform.io/browse?provider=azurerm).
 
-[![Build Status](https://travis-ci.org/Azure/terraform.svg?branch=master)](https://travis-ci.org/Azure/terraform)
+[![Build Status](https://travis-ci.org/Azure/terraform-test.svg?branch=master)](https://travis-ci.org/Azure/terraform-test)
 
 # Usage 
 
