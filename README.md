@@ -21,7 +21,7 @@ export MODULE_PATH=/user/me/source/Azure/terraform-azurerm-modulename
 Now run the lint tests:
 
 ```shell
-docker run -v /$MODULE_PATH:/tf-test/module --rm microsoft/terraform-test rake build
+docker run -v $MODULE_PATH:/tf-test/module --rm microsoft/terraform-test rake -f ../Rakefile build
 ```
 
 ## End to End Tests
@@ -56,10 +56,13 @@ Setup the environment variable which specifies the root path of the module code 
 export MODULE_PATH=/user/me/source/Azure/terraform-azurerm-modulename
 ```
 
-Now run the tests.
+Now run the tests using this docker command:
+
 ```shell
-docker run -v ~/.ssh:/root/.ssh/ -v $PWD/logs:/tf-test/module/.kitchen -v /$MODULE_PATH:/tf-test/module -e ARM_CLIENT_ID -e ARM_TENANT_ID -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_SECRET -e ARM_TEST_LOCATION -e ARM_TEST_LOCATION_ALT --rm microsoft/terraform-test rake e2e
+docker run -v ~/.ssh:/root/.ssh/ -v $MODULE_PATH/logs:/tf-test/module/.kitchen -v $MODULE_PATH:/tf-test/module -e ARM_CLIENT_ID -e ARM_TENANT_ID -e ARM_SUBSCRIPTION_ID -e ARM_CLIENT_SECRET -e ARM_TEST_LOCATION -e ARM_TEST_LOCATION_ALT --rm microsoft/terraform-test rake -f ../Rakefile e2e
 ```
+
+This may take a number of minutes depending on the size of the module and there will be no output to the terminal until the tests complete.  To see progress, look at the files being generated and updated under the local `$MODULE_PATH/logs` directory.
 
 # Contributing
 
