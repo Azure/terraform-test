@@ -2,7 +2,8 @@ FROM ruby:2.3
 ARG tfver
 ENV TERRAFORM_VERSION=$tfver
 
-COPY ["Gemfile", "Rakefile", "build/", "/tf-test/"]
+COPY ["Gemfile", "Rakefile", "/tf-test/"]
+COPY build/ /tf-test/build/
 RUN apt-get update && gem update --system && apt-get install unzip \
     && curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS \
