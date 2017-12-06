@@ -21,7 +21,7 @@ export MODULE_PATH=/user/me/source/Azure/terraform-azurerm-modulename
 Now run the lint tests:
 
 ```shell
-docker run -v /$MODULE_PATH:/tf-test/module --rm microsoft/terraform-test rake build
+docker run -v $MODULE_PATH:/tf-test/module --rm microsoft/terraform-test rake -f ../Rakefile build
 ```
 
 ## End to End Tests
