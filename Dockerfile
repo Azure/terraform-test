@@ -2,7 +2,7 @@ FROM ruby:2.3
 ARG tfver
 ENV TERRAFORM_VERSION=$tfver
 
-COPY ["Gemfile", "Rakefile", "/tf-test/"]
+COPY ["Gemfile", "Rakefile", "Gemfile-install.sh","/tf-test/"]
 COPY build/ /tf-test/build/
 RUN apt-get update && gem update --system && apt-get install unzip \
     && curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
@@ -14,5 +14,5 @@ RUN apt-get update && gem update --system && apt-get install unzip \
     && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
 
 WORKDIR /tf-test/
-RUN ["bundle", "install"]
+RUN ./Gemfile-install.sh
 WORKDIR /tf-test/module
