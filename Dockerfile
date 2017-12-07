@@ -2,7 +2,7 @@ FROM ruby:2.3
 ARG tfver
 ENV TERRAFORM_VERSION=$tfver
 
-COPY ["Gemfile", "Rakefile", "Gemfile-install.sh","/tf-test/"]
+COPY ["Gemfile", "Rakefile", "/tf-test/"]
 COPY build/ /tf-test/build/
 RUN apt-get update && gem update --system && apt-get install unzip \
     && curl -Os https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
@@ -14,5 +14,9 @@ RUN apt-get update && gem update --system && apt-get install unzip \
     && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
 
 WORKDIR /tf-test/
-RUN ./Gemfile-install.sh
+RUN gem install rake --version =12.3.0 \
+    && gem install colorize --version =0.8.1 \
+    && gem install rspec --version =3.7.0 \
+    && gem install kitchen-terraform --version 3.0.0 \
+    && gem install test-kitchen --version 1.16.0
 WORKDIR /tf-test/module
