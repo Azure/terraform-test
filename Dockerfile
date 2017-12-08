@@ -14,5 +14,9 @@ RUN apt-get update && gem update --system && apt-get install unzip \
     && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
 
 WORKDIR /tf-test/
-RUN ["bundle", "install"]
+RUN gem install rake --version =12.3.0 \
+    && gem install colorize --version =0.8.1 \
+    && gem install rspec --version =3.7.0 \
+    && gem install kitchen-terraform --version 3.0.0 \
+    && gem install test-kitchen --version 1.16.0
 WORKDIR /tf-test/module
