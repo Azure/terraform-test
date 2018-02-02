@@ -1,8 +1,8 @@
 require 'colorize'
 require 'rspec/core/rake_task'
 
-require 'bundler/setup'
-require 'terramodtest'
+require_relative 'build/file_utils'
+require_relative 'build/static_utils'
 
 namespace :presteps do
   task :clean_up do
