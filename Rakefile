@@ -1,8 +1,8 @@
 require 'colorize'
 require 'rspec/core/rake_task'
 
-require_relative 'build/file_utils'
-require_relative 'build/static_utils'
+require 'bundler/setup'
+require 'terramodtest'
 
 namespace :presteps do
   task :clean_up do
@@ -25,26 +25,26 @@ end
 
 namespace :integration do
   task :converge do 
-    exit_code = `kitchen converge`
-    if exit_code != 0
+    exit_code = system( "kitchen converge" )
+    if exit_code != true
       raise "ERROR: Test kitchen converge failed! #{exit_code}\n"
     end
   end
   task :verify do
-    exit_code = `kitchen verify`
-    if exit_code != 0
+    exit_code = system( "kitchen verify" )
+    if exit_code != true
       raise "ERROR: Test kitchen verify failed! #{exit_code}\n"
     end
   end
   task :test do
-    exit_code = `kitchen test`
-    if exit_code != 0
+    exit_code = system( "kitchen test" )
+    if exit_code != true
       raise "ERROR: Test kitchen test failed! #{exit_code}\n"
     end
   end
   task :destroy do
-    exit_code = `kitchen destroy`
-    if exit_code != 0
+    exit_code = system( "kitchen destroy" )
+    if exit_code != true
       raise "ERROR: Test kitchen destroy failed! #{exit_code}\n"
     end
   end
