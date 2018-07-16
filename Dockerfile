@@ -20,3 +20,16 @@ RUN gem install rake --version =12.3.0 \
     && gem install kitchen-terraform --version 3.0.0 \
     && gem install test-kitchen --version 1.16.0
 WORKDIR /tf-test/module
+
+RUN wget https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz >/dev/null 2>&1
+RUN tar -zxvf go1.10.3.linux-amd64.tar.gz -C /usr/local/ >/dev/null
+ENV PATH /usr/local/go/bin:/usr/local/bin:/usr/bin:$PATH
+
+# RUN /bin/bash -c "go get -u github.com/denisenkom/go-mssqldb"
+# RUN /bin/bash -c "go get github.com/stretchr/testify/assert"
+# RUN /bin/bash -c "go get github.com/gruntwork-io/terratest/modules/ssh"
+# RUN /bin/bash -c "go get github.com/gruntwork-io/terratest/modules/retry"
+# RUN /bin/bash -c "go get github.com/gruntwork-io/terratest/modules/random"
+# RUN /bin/bash -c "go get github.com/gruntwork-io/terratest/modules/terraform"
+# RUN /bin/bash -c "go get github.com/gruntwork-io/terratest/modules/http-helper"
+# RUN /bin/bash -c "go get github.com/gruntwork-io/terratest/modules/test-structure"
