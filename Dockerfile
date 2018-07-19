@@ -18,11 +18,10 @@ RUN apt-get update && gem update --system && apt-get install unzip \
 WORKDIR /tf-test/
 RUN gem install rake --version =12.3.0 \
     && gem install colorize --version =0.8.1 \
-    && gem install rspec --version =3.7.0 \
-    && gem install kitchen-terraform --version 3.0.0 \
-    && gem install test-kitchen --version 1.16.0
+    && gem install rspec --version =3.7.0
 WORKDIR /tf-test/module
 
-RUN wget https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz >/dev/null 2>&1
-RUN tar -zxvf go${GOLANG_VERSION}.linux-amd64.tar.gz -C /usr/local/ >/dev/null
-ENV PATH /usr/local/go/bin:/usr/local/bin:/usr/bin:$PATH
+RUN curl -Os https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz \
+    && tar -zxvf go${GOLANG_VERSION}.linux-amd64.tar.gz -C /usr/local/
+ENV PATH /usr/local/go/bin:$PATH
+ENV GOPATH $HOME/go
