@@ -21,7 +21,7 @@ RUN gem install rake --version =12.3.0 \
     && gem install rspec --version =3.7.0
 WORKDIR /tf-test/module
 
-RUN curl -Os https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz \
-    && tar -zxvf go${GOLANG_VERSION}.linux-amd64.tar.gz -C /usr/local/
+RUN curl -Os https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz >/dev/null 2>&1 \
+    && tar -zxvf go${GOLANG_VERSION}.linux-amd64.tar.gz -C /usr/local/ >/dev/null
 ENV PATH /usr/local/go/bin:$PATH
 ENV GOPATH $HOME/go
