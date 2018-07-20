@@ -1,6 +1,8 @@
 FROM ruby:2.3
 ARG tfver
+ARG gover
 ENV TERRAFORM_VERSION=$tfver
+ENV GOLANG_VERSION=$gover
 
 COPY ["Gemfile", "Rakefile", "/tf-test/"]
 COPY build/ /tf-test/build/
@@ -16,7 +18,10 @@ RUN apt-get update && gem update --system && apt-get install unzip \
 WORKDIR /tf-test/
 RUN gem install rake --version =12.3.0 \
     && gem install colorize --version =0.8.1 \
-    && gem install rspec --version =3.7.0 \
-    && gem install kitchen-terraform --version 3.0.0 \
-    && gem install test-kitchen --version 1.16.0
+    && gem install rspec --version =3.7.0
 WORKDIR /tf-test/module
+
+RUN curl -Os https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz \
+    && tar -zxvf go${GOLANG_VERSION}.linux-amd64.tar.gz -C /usr/local/
+ENV PATH /usr/local/go/bin:$PATH
+ENV GOPATH $HOME/go
