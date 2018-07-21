@@ -1,8 +1,8 @@
 FROM ruby:2.3
 ARG tfver
 ARG gover
-ENV TERRAFORM_VERSION=$tfver
-ENV GOLANG_VERSION=$gover
+ENV TERRAFORM_VERSION=0.11.7
+ENV GOLANG_VERSION=1.10.3
 
 COPY ["Gemfile", "Rakefile", "/tf-test/"]
 COPY build/ /tf-test/build/
