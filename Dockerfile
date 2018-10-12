@@ -12,4 +12,4 @@ RUN chmod 744 /bin/azure-terraform-module-test.sh
 RUN mkdir -p /go/src/module
 WORKDIR /go/src/module
 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["azure-terraform-module-test.sh"]
