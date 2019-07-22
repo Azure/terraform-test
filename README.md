@@ -4,7 +4,8 @@ This Docker image (see [Dockerfile](https://github.com/matt-FFFFFF/terraform-tes
 
 # Terraform 0.12
 
-This repo has been forked and updated to support Terraform 0.12. It creates the Docker hub image mattffffff/terraform-test.
+This repo now supports terraform 0.12 alongside 0.11.
+
 # Usage 
 
 This image can be used for terraform lint or end to end tests against Azure.
