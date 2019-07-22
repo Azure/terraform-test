@@ -4,7 +4,12 @@ require 'fileutils'
 def lint_tf
   # Do the linting on current working folder.
   print "INFO: Linting Terraform configurations...\n".yellow  
-  message = `terraform validate >/dev/null`
+  
+  if ENV['TERRAFORM_VERSION'].start_with?("0.12")
+    message = `terraform validate >/dev/null`
+  elsif ENV['TERRAFORM_VERSION'].start_with?("0.11")
+    message = `terraform validate -check-variables=true 2>&1`
+  end
 
   # Check the linting message.
   if not message.empty?
@@ -17,7 +22,11 @@ end
 def style_tf
   # Do the style checking on current working folder.
   print "INFO: Styling Terraform configurations...\n".yellow  
-  message = `terraform fmt -check 2>&1`
+  if ENV['TERRAFORM_VERSION'].start_with?("0.12")
+    message = `terraform fmt -check 2>&1`
+  elsif ENV['TERRAFORM_VERSION'].start_with?("0.11")
+    message = `terraform fmt -check=true 2>&1`
+  end
 
   # Check the styling message.
   if not message.empty?
@@ -29,8 +38,12 @@ end
 
 def format_tf
   # Apply the canonical format and style on current working folder.
-  print "INFO: Formatting Terraform configurations...\n".yellow  
-  message = `terraform fmt -diff 2>&1`
+  print "INFO: Formatting Terraform configurations...\n".yellow
+  if ENV['TERRAFORM_VERSION'].start_with?("0.12")
+    message = `terraform fmt -diff 2>&1`
+  elsif ENV['TERRAFORM_VERSION'].start_with?("0.11")
+    message = `terraform fmt -diff=true 2>&1`
+  end
 
   # Check the styling message.
   if not message.empty?
