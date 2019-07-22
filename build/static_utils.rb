@@ -4,7 +4,7 @@ require 'fileutils'
 def lint_tf
   # Do the linting on current working folder.
   print "INFO: Linting Terraform configurations...\n".yellow  
-  message = `terraform validate 2>&1`
+  message = `terraform validate >/dev/null`
 
   # Check the linting message.
   if not message.empty?
