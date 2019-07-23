@@ -1,10 +1,10 @@
 # Overview
 
-This Docker image (see [Dockerfile](https://github.com/matt-FFFFFF/terraform-test/blob/master/Dockerfile)) is for testing [Azure Terraform modules](https://registry.terraform.io/browse?provider=Azure).
+This Docker image (see [Dockerfile](https://github.com/Azure/terraform-test/blob/master/Dockerfile)) is for testing [Azure Terraform modules](https://registry.terraform.io/browse?provider=Azure).
 
 # Terraform 0.12
 
-This repo now supports terraform 0.12 alongside 0.11.
+This image now supports terraform 0.12 alongside 0.11.
 
 # Usage 
 

@@ -13,12 +13,12 @@ jobs:
       if: type IN (pull_request)
       install: true
       script:
-      - docker build -t mattffffff/terraform-test:$TERRAFORM_VERSION . --build-arg tfver=$TERRAFORM_VERSION --build-arg gover=$GOLANG_VERSION
+      - docker build -t microsoft/terraform-test:$TERRAFORM_VERSION . --build-arg tfver=$TERRAFORM_VERSION --build-arg gover=$GOLANG_VERSION
     - stage: push docker image
       if: (branch = master) AND (type IN (push, api, cron))
       install: true
       script:
-      - docker build -t mattffffff/terraform-test:$TERRAFORM_VERSION -t mattffffff/terraform-test:latest . --build-arg tfver=$TERRAFORM_VERSION --build-arg gover=$GOLANG_VERSION
+      - docker build -t microsoft/terraform-test:$TERRAFORM_VERSION -t microsoft/terraform-test:latest . --build-arg tfver=$TERRAFORM_VERSION --build-arg gover=$GOLANG_VERSION
       - docker login -u="$DOCKER_USER" -p="$DOCKER_PASSWORD"
-      - docker push mattffffff/terraform-test:$TERRAFORM_VERSION
-      - docker push mattffffff/terraform-test:latest
+      - docker push microsoft/terraform-test:$TERRAFORM_VERSION
+      - docker push microsoft/terraform-test:latest
