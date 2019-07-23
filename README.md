@@ -1,6 +1,6 @@
 # Overview
 
-This Docker image (see [Dockerfile](https://github.com/Azure/terraform-test/blob/master/Dockerfile)) is for testing [Azure Terraform modules](https://registry.terraform.io/browse?provider=Azure).
+This Docker image (see [Dockerfile](https://github.com/Azure/terraform-test/blob/master/Dockerfile)) is for testing [Azure Terraform modules](https://registry.terraform.io/browse?provider=azurerm).
 
 # Terraform 0.12
 
