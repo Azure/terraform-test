@@ -2,6 +2,8 @@
 
 This Docker image (see [Dockerfile](https://github.com/Azure/terraform-test/blob/master/Dockerfile)) is for testing [Azure Terraform modules](https://registry.terraform.io/browse?provider=azurerm).
 
+[![Build Status](https://travis-ci.org/Azure/terraform-test.svg?branch=master)](https://travis-ci.org/Azure/terraform-test)
+
 # Terraform 0.12
 
 This image now supports terraform 0.12 alongside 0.11.
