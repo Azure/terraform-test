@@ -4,6 +4,10 @@ This Docker image (see [Dockerfile](https://github.com/Azure/terraform-test/blob
 
 [![Build Status](https://travis-ci.org/Azure/terraform-test.svg?branch=master)](https://travis-ci.org/Azure/terraform-test)
 
+# Terraform 0.12
+
+This image now supports terraform 0.12 alongside 0.11.
+
 # Usage 
 
 This image can be used for terraform lint or end to end tests against Azure.
