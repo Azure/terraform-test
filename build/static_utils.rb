@@ -6,7 +6,11 @@ def lint_tf
   print "INFO: Linting Terraform configurations...\n".yellow  
   
   if ENV['TERRAFORM_VERSION'].start_with?("0.12")
-    message = `terraform validate >/dev/null`
+    success = system ("terraform init")
+        if not success
+          raise "ERROR: terraform init failed!\n".red
+        end
+    message = `terraform validate ./ >/dev/null`
   elsif ENV['TERRAFORM_VERSION'].start_with?("0.11")
     message = `terraform validate -check-variables=false 2>&1`
   end
