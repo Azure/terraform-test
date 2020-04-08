@@ -1,4 +1,4 @@
-FROM ruby:2.3
+FROM ruby:2.7.0
 ARG tfver
 ARG gover
 ENV TERRAFORM_VERSION=$tfver
@@ -15,10 +15,12 @@ RUN apt-get update && gem update --system && apt-get install unzip \
     && shasum -a 256 -c terraform_${TERRAFORM_VERSION}_SHA256SUMS 2>&1 | grep "${TERRAFORM_VERSION}_linux_amd64.zip:\sOK" \
     && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
 
+RUN apt remove -y imagemagic
+
 WORKDIR /tf-test/
-RUN gem install rake --version =12.3.0 \
+RUN gem install rake --version =13.0.1 \
     && gem install colorize --version =0.8.1 \
-    && gem install rspec --version =3.7.0
+    && gem install rspec --version =3.9.0
 WORKDIR /tf-test/module
 
 RUN curl -Os https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz >/dev/null 2>&1 \
