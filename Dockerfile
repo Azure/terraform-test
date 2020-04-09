@@ -15,6 +15,8 @@ RUN apt-get update && gem update --system && apt-get install unzip \
     && shasum -a 256 -c terraform_${TERRAFORM_VERSION}_SHA256SUMS 2>&1 | grep "${TERRAFORM_VERSION}_linux_amd64.zip:\sOK" \
     && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin
 
+RUN apt-get autoremove -y imagemagick
+
 WORKDIR /tf-test/
 RUN gem install rake --version =13.0.1 \
     && gem install colorize --version =0.8.1 \
