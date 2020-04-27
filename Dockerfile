@@ -1,4 +1,4 @@
-FROM ruby:2.7.0
+FROM ruby:2.7.1
 ARG tfver
 ARG gover
 ENV TERRAFORM_VERSION=$tfver
