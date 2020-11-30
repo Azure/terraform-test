@@ -27,3 +27,5 @@ RUN curl -Os https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd
     && tar -zxvf go${GOLANG_VERSION}.linux-amd64.tar.gz -C /usr/local/ >/dev/null
 ENV PATH /usr/local/go/bin:$PATH
 ENV GOPATH $HOME/go
+
+RUN go get github.com/katbyte/terrafmt
